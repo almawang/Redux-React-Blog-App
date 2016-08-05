@@ -5,6 +5,12 @@ const autoprefixer = require('autoprefixer');
 module.exports = {
   stats: { colors: true },
   devtool: 'inline-source-map',
+  devServer: {
+    port: 8080,
+    historyApiFallback: {
+      index: 'index.html',
+    },
+  },
   entry: ['babel-polyfill', './src'],
   output: {
     path: 'build',

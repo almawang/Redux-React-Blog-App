@@ -1,6 +1,129 @@
+$buttonColor: lighten(blue, 30%);
+
 body {
-  font-family: "Roboto", sans-serif;
+  font-family: "Reem Kufi", sans-serif;
   color: rgb(10%, 10%, 10%);
   background: darken(white, 10%);
   margin: 50px;
+}
+
+button {
+  transition-property: all;
+  transition-duration: .4;
+}
+
+a {
+  text-decoration: none;
+  transition-property: all;
+  transition-duration: .3s;
+  color: rgb(10%, 10%, 10%);
+}
+a:hover {
+  color: rgb(60%, 15%, 15%);
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  margin: 1em 20em 1em 20em;
+  padding: 10px 15px 10px 15px;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid transparentize(black, .8);
+}
+
+.newbar {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  input, textarea {
+    font-size: 16px;
+    margin: 3px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+  }
+  button {
+    font-size: 16px;
+    padding: 10px;
+    margin: auto;
+    margin-top: 3px;
+    border-radius: 5px;
+    font-family: "Reem Kufi", sans-serif;
+    border: 1px solid transparentize(black, .75);;
+    background-color: $buttonColor;
+  }
+  button:hover {
+    background-color: darken($buttonColor, 10);
+  }
+}
+
+.indexbar {
+  display: flex;
+  flex-flow: column;
+  margin: 1em 10em 1em 10em;
+}
+
+.indexPost {
+  background-color: darken(white, 5);
+  display: flex;
+  flex-flow: row;
+  justify-content: space-between;
+  border-radius: 3px;
+  border: 1px solid transparentize(black, .8);
+  margin: 2px;
+  padding: 10px 20px 10px 20px;
+  .title {
+    font-size: 20px;
+  }
+  .tags {
+    font-size: 12px;
+  }
+}
+
+.editbar {
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+  button, a {
+    margin: 10px;
+    font-size: 14px;
+    padding: 7px;
+    border: 1px solid transparentize(black, .9);
+    border-radius: 5px;
+  }
+  a {
+    margin-right: 30px;
+  }
+  button:hover {
+    background-color: darken(gray, 8);
+  }
+}
+
+.showbox {
+  display: flex;
+  flex-flow: column;
+  margin: 1em 10em 1em 10em;
+  input, textarea {
+    font-size: 16px;
+    margin: 3px;
+    padding: 10px;
+    border-radius: 5px;
+    box-shadow: none;
+    border: none;
+  }
+  div, input {
+    margin: 3px;
+  }
+  .title {
+    font-size: 30px;
+  }
+  .content {
+    font-size: 17px;
+  }
+  .tags {
+    font-size: 12px;
+  }
+
 }
