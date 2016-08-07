@@ -1,7 +1,9 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
+const ROOT_URL = 'https://almablog.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://cs52-blog.herokuapp.com/api';
 const API_KEY = '?key=alma_wang';
 // keys for actiontypes
 export const ActionTypes = {
@@ -43,7 +45,7 @@ export function fetchPost(id) {
 
 export function createPost(newPost) {
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/posts${API_KEY}`, newPost).then(resposne => {
+    axios.post(`${ROOT_URL}/posts${API_KEY}`, newPost).then(response => {
       browserHistory.push('/');
     }).catch(error => {
       console.log(error);
