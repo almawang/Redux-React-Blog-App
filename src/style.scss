@@ -82,6 +82,10 @@ a:hover {
   }
 }
 
+.author {
+  margin-left: 20px;
+}
+
 .editbar {
   display: flex;
   justify-content: flex-start;
@@ -99,6 +103,10 @@ a:hover {
   button:hover {
     background-color: darken(gray, 8);
   }
+}
+
+.error {
+  color: red;
 }
 
 .showbox {

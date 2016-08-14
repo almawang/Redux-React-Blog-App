@@ -13,6 +13,7 @@ class Show extends Component {
       post: null,
     };
     this.renderEdit = this.renderEdit.bind(this);
+    this.renderEditBar = this.renderEditBar.bind(this);
     this.onEditClick = this.onEditClick.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
     this.onTitleChange = this.onTitleChange.bind(this);
@@ -21,9 +22,9 @@ class Show extends Component {
   }
   componentWillMount() {
     this.props.fetchPost(this.props.params.id);
-    this.setState({
-      post: this.props.post,
-    });
+    // this.setState({
+    //   post: this.props.post,
+    // });
   }
   onTitleChange(event) {
     this.setState({
@@ -49,6 +50,7 @@ class Show extends Component {
     } else {
       this.setState({
         edit: true,
+        post: this.props.post,
       });
     }
   }
@@ -67,29 +69,54 @@ class Show extends Component {
     } else {
       return (
         <div className="showbox">
-          <div className="title">{this.state.post.title}</div>
-          <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.state.post.content || '') }} />
-          <div className="tags">{this.state.post.tags}</div>
+          <div className="title">{this.props.post.title}</div>
+          <div className="content" dangerouslySetInnerHTML={{ __html: marked(this.props.post.content || '') }} />
+          <div className="tags">{this.props.post.tags}</div>
         </div>
       );
     }
   }
+  renderEditBar() {
+    if (this.props.authenticated) {
+      return (
+        <div className="editbar">
+          <Link to="/" className="back">Back To Index</Link>
+          <button className="edit" onClick={this.onEditClick}>Edit</button>
+          <button className="delete" onClick={this.onDeleteClick} to="/">Delete</button>
+        </div>
+      );
+    } else {
+      return (
+        <div className="editbar">
+          <Link to="/" className="back">Back To Index</Link>
+          <div> (sign in to edit posts) </div>
+        </div>
+      );
+    }
+  }
+  renderAuthor() {
+    const author = this.props.post.author;
+    if (author) {
+      return (
+        <div className="author">Author: {author.fullname}</div>
+      );
+    } else {
+      return (<div />);
+    }
+  }
   render() {
-    if (this.state.post == null || this.state.post._id !== this.props.params.id) {
-      this.setState({
-        post: this.props.post,
-      });
+    if (!this.props.post) {
+      // this.setState({
+      //   post: this.props.post,
+      // });
       return (
         <div>Getting your post</div>
       );
     }
     return (
       <div>
-        <div className="editbar">
-          <Link to="/" className="back">Back To Index</Link>
-          <button className="edit" onClick={this.onEditClick}>Edit</button>
-          <button className="delete" onClick={this.onDeleteClick} to="/">Delete</button>
-        </div>
+        {this.renderEditBar()}
+        {this.renderAuthor()}
         {this.renderEdit()}
       </div>
     );
@@ -98,6 +125,7 @@ class Show extends Component {
 
 const mapStateToProps = (state) => ({
   post: state.posts.post,
+  authenticated: state.authenticated,
 });
 
 // react-redux glue -- outputs Container that know state in props

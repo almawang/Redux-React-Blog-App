@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchPosts, fetchPost } from '../actions';
+import { fetchPosts, fetchPost, removeError } from '../actions';
 import { Link } from 'react-router';
 
 class Index extends Component {
@@ -13,6 +13,7 @@ class Index extends Component {
 
   componentWillMount() {
     this.props.fetchPosts();
+    this.props.removeError();
   }
   renderPosts = () => {
     return this.props.posts.map((post) => {
@@ -41,4 +42,4 @@ const mapStateToProps = (state) => (
 );
 
 // react-redux glue -- outputs Container that know state in props
-export default connect(mapStateToProps, { fetchPosts, fetchPost })(Index);
+export default connect(mapStateToProps, { fetchPosts, fetchPost, removeError })(Index);
